@@ -97,7 +97,16 @@
                                     <td>{{$i}}</td>
                                     <td>{{$item->section_name}}</td>
                                     <td>{{$item->description}}</td>
-                                    <td></td>
+                                    <td>
+                                        <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
+                                                data-id="{{ $item->id }}" data-section_name="{{ $item->section_name }}"
+                                                data-description="{{ $item->description }}" data-toggle="modal"
+                                                href="#exampleModal2" title="تعديل"><i class="las la-pen"></i></a>
+                                                <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                data-id="{{ $item->id }}" data-section_name="{{ $item->section_name }}"
+                                                data-toggle="modal" href="#modaldemo9" title="حذف"><i
+                                                    class="las la-trash"></i></a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -87,7 +87,27 @@ class SectionsController extends Controller
      */
     public function update(Request $request, sections $sections)
     {
-        //
+        $section_id = $request->id;
+        $this->validate($request, [
+
+            'section_name' => 'required|max:255|unique:sections,section_name,'.$section_id,
+            'description' => 'required',
+        ],[
+
+            'section_name.required' =>'يرجي ادخال اسم القسم',
+            'section_name.unique' =>'اسم القسم مسجل مسبقا',
+            'description.required' =>'يرجي ادخال البيان',
+
+        ]);
+
+        $sections = sections::find($section_id);
+        $sections->update([
+            'section_name' => $request->section_name,
+            'description' => $request->description,
+        ]);
+
+        session()->flash('edit','تم تعديل القسم بنجاج');
+        return redirect('/sections');
     }
 
     /**

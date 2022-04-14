@@ -53,7 +53,7 @@ class SectionsController extends Controller
 
         ]);
         session()->flash('Add', 'تم اضافة القسم بنجاح ');
-        return redirect('/sections');
+        return redirect()->back();
     }
 
     /**
@@ -107,7 +107,7 @@ class SectionsController extends Controller
         ]);
 
         session()->flash('edit','تم تعديل القسم بنجاج');
-        return redirect('/sections');
+        return redirect()->back();
     }
 
     /**
@@ -116,8 +116,11 @@ class SectionsController extends Controller
      * @param  \App\Models\sections  $sections
      * @return \Illuminate\Http\Response
      */
-    public function destroy(sections $sections)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->id;
+        sections::find($id)->delete();
+        session()->flash('delete','تم حذف القسم بنجاح');
+        return redirect()->back();
     }
 }
